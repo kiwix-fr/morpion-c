@@ -23,3 +23,8 @@ int main()
 
 	return EXIT_SUCCESS;
 }
+
+struct morpion est_fini(struct morpion grille){
+
+	return grille;
+}
