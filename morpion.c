@@ -8,7 +8,7 @@
 struct morpion{
 	int qui_le_tour;
 	int fini;
-	char grille[3];
+	char grille[3][3];
 };
 
 void affichage(struct morpion grille); // Affiche la grille
@@ -18,13 +18,27 @@ struct morpion est_fini(struct morpion grille); // Fonction pour analyser si la 
 /* Fonction Principale */
 int main()
 {
+	
+	char tab_grille[3][3] = {
+	{' ', ' ', ' '},
+	{' ', ' ', ' '},
+	{' ', ' ', ' '}
+	};
 
-	printf("Salut le bossssss\n");
+	struct morpion grille = {P1, 0, tab_grille[3][3]};
+
+	// Boucle Principale qui fait tourner le jeu.
+	while (!grille.fini){
+		printf("test");
+	}
 
 	return EXIT_SUCCESS;
 }
 
 struct morpion est_fini(struct morpion grille){
+	
+	// Gère le cas de victoire sur les lignes
+	
 
 	return grille;
 }
