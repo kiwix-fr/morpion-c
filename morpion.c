@@ -11,8 +11,9 @@ struct morpion{
 	char grille[3];
 };
 
-void affichage(struct morpion grille);
-struct morpion tour_joueur(struct morpion grille);
+void affichage(struct morpion grille); // Affiche la grille
+struct morpion tour_joueur(struct morpion grille); // Fonction qui gère l'intéraction et modifie la grille entre les 2 joueurs
+struct morpion est_fini(struct morpion grille); // Fonction pour analyser si la partie est fini après chaque tour
 
 /* Fonction Principale */
 int main()
