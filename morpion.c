@@ -9,6 +9,7 @@ struct morpion{
 	int qui_le_tour;
 	int fini;
 	char grille[3][3];
+	int gagnant = 0;
 };
 
 void affichage(struct morpion grille); // Affiche la grille
@@ -36,9 +37,12 @@ int main()
 }
 
 struct morpion est_fini(struct morpion grille){
-	
+	int temp = 0;
+
 	// Gère le cas de victoire sur les lignes
-	
+	for (int i = 0; i<3; i++){
+		if (grille.grille[0][i] == 'X')
+			temp+=1;
 
 	return grille;
 }
