@@ -18,7 +18,7 @@ struct morpion tour_joueur(struct morpion grille);
 int main()
 {
 
-	printf("Salut le boss\n");
+	printf("Salut le bossssss\n");
 
 	return EXIT_SUCCESS;
 }
