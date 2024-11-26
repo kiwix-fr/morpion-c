@@ -9,7 +9,7 @@ struct morpion{
 	int qui_le_tour;
 	int fini;
 	char grille[3][3];
-	int gagnant = 0;
+	int gagnant;
 };
 
 void affichage(struct morpion grille); // Affiche la grille
@@ -26,7 +26,7 @@ int main()
 	{' ', ' ', ' '}
 	};
 
-	struct morpion grille = {P1, 0, tab_grille[3][3]};
+	struct morpion grille = {P1, 0, tab_grille[3][3], 0};
 
 	// Boucle Principale qui fait tourner le jeu.
 	while (!grille.fini){
@@ -37,12 +37,35 @@ int main()
 }
 
 struct morpion est_fini(struct morpion grille){
-	int temp = 0;
 
-	// Gère le cas de victoire sur les lignes
-	for (int i = 0; i<3; i++){
-		if (grille.grille[0][i] == 'X')
-			temp+=1;
+	// Condition qui arrête les recherches si on a trouvé un gagnant.
+	if (grille.gagnant == 0){
+		
+		for (int i = 0; i<3; i++){
+			// Test pour les lignes
+			if (grille.grille[i][0] == 'X' && grille.grille[i][1] == 'X' && grille.grille[i][2] == 'X')
+				grille.gagnant = P1;
+			if (grille.grille[i][0] == 'O' && grille.grille[i][1] == 'O' && grille.grille[i][2] == 'O')
+				grille.gagnant = P2;
 
+			// Test pour les colonnes
+			if (grille.grille[0][i] == 'X' && grille.grille[1][i] == 'X' && grille.grille[2][i] == 'X')
+				grille.gagnant = P1;
+			if (grille.grille[0][i] == 'O' && grille.grille[1][i] == 'O' && grille.grille[2][i] == 'O')
+				grille.gagnant = P2;
+
+			// Test pour les 2 diagonales
+			if (grille.grille[0][0] == 'X' && grille.grille[1][1] == 'X' && grille.grille[2][2] == 'X')
+				grille.gagnant = P1;
+			if (grille.grille[0][0] == 'O' && grille.grille[1][1] == 'O' && grille.grille[2][2] == 'O')
+				grille.gagnant = P2;
+			
+			if (grille.grille[0][2] == 'X' && grille.grille[1][1] == 'X' && grille.grille[2][0] == 'X')
+				grille.gagnant = P1;
+			if (grille.grille[0][2] == 'O' && grille.grille[1][1] == 'O' && grille.grille[2][0] == 'O')
+				grille.gagnant = P2;
+		}
+	}		
 	return grille;
 }
+
