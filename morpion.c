@@ -1,4 +1,4 @@
-// Morpion Game 2 player  by kiwix-fr (kiwix.shell@gmail.com)
+// Morpion Game 2 player by kiwix-fr (kiwix.shell@gmail.com) and thomas-merlen (thomas.merlen@outlook.com)
 #include <stdlib.h>
 #include <stdio.h>
 
