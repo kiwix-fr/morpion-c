@@ -4,11 +4,12 @@
 
 #define P1 1
 #define P2 2 
+#define N 3
 
 struct morpion{
 	int qui_le_tour;
 	int fini;
-	char grille[3][3];
+	char grille[N][N];
 	int gagnant;
 };
 
@@ -19,8 +20,9 @@ struct morpion est_fini(struct morpion grille); // Fonction pour analyser si la 
 /* Fonction Principale */
 int main()
 {
-	
-	char tab_grille[3][3] = {
+
+
+	char tab_grille[N][N] = {
 	{' ', ' ', ' '},
 	{' ', ' ', ' '},
 	{' ', ' ', ' '}
@@ -30,10 +32,49 @@ int main()
 
 	// Boucle Principale qui fait tourner le jeu.
 	while (!grille.fini){
-		printf("test");
+		tour_joueur(grille);
 	}
 
 	return EXIT_SUCCESS;
+}
+
+void affichage(struct morpion grille) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf(" %c ", grille.grille[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+
+struct morpion tour_joueur(struct morpion grille){
+	
+	int x; /* x ou le joueur va jouer */ 
+	int y; /* y ou le joueur va jouer */ 
+
+	while(!grille.fini){
+
+		if (grille.qui_le_tour == P1){
+			printf("Joueur 1 c'est à vous de jouer\nOu voulez vous jouer ? : ");		
+			scanf("%d %d", &x , &y); /* recuperer les valeurs */ 
+		       	grille.grille[x][y] = 'x'; /* ajoute x dans le tableau au bon endroit */ 
+			affichage(grille); 
+		        est_fini(grille);	
+			grille.qui_le_tour = P2;
+		}
+
+		else if (grille.qui_le_tour == P2){
+			printf("Joueur 2 c'est à vous de jouer\nOu voulez vous jouer ? : ");
+			scanf("%d %d", &x, &y); 
+			grille.grille[x][y] = 'o';
+			affichage(grille);
+			est_fini(grille);
+			grille.qui_le_tour = P1; 
+		}
+
+	}
 }
 
 struct morpion est_fini(struct morpion grille){
