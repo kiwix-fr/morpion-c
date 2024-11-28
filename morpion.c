@@ -45,36 +45,43 @@ void affichage(struct morpion grille) {
 
 struct morpion tour_joueur(struct morpion grille){
 	int fini = 0;
-	int compteur = 1; 
+	int compteur = 0; 
 	int x; /* x ou le joueur va jouer */ 
 	int y; /* y ou le joueur va jouer */ 
 
-	if (compteur >= 9)
-	{
-		printf("Match Nul\n");
-	} else{
-		while(fini == 0){
-			fini = est_fini(grille);
-			if (grille.qui_le_tour == P1){
-				if (fini == 0){
-					printf("Joueur 1 c'est à vous de jouer\nOu voulez vous jouer ? : ");		
-					scanf("%d %d", &x , &y); /* recuperer les valeurs */ 
-		       			grille.grille[x][y] = 'x'; /* ajoute x dans le tableau au bon endroit */ 
-					compteur += 1;
-					affichage(grille); 	
-					grille.qui_le_tour = P2;
-				}
+	while(fini == 0){
+	        fini = est_fini(grille);
+		if (grille.qui_le_tour == P1){
+			if (fini == 0){		      		
+				printf("Joueur 1 c'est à vous de jouer\nOu voulez vous jouer ? : ");		
+				scanf("%d %d", &x , &y); /* recuperer les valeurs */ 
+		       		grille.grille[x][y] = 'x'; /* ajoute x dans le tableau au bon endroit */ 
+				compteur += 1;
+				affichage(grille); 	
+				grille.qui_le_tour = P2;
+				
+			        if (compteur >= 9){
+			                printf("Match nul entre les deux joueurs \n");
+			                fini = 1;
+			        }	    
+			  
 			}
+		}
 
-			else if (grille.qui_le_tour == P2){
-				if (fini == 0){
-					printf("Joueur 2 c'est à vous de jouer\nOu voulez vous jouer ? : ");
-					scanf("%d %d", &x, &y); 
-					grille.grille[x][y] = 'o';
-					compteur += 1;
-					affichage(grille); 
-					grille.qui_le_tour = P1; 
-				}
+		else if (grille.qui_le_tour == P2){
+			if (fini == 0){		  
+			        printf("Joueur 2 c'est à vous de jouer\nOu voulez vous jouer ? : ");
+				scanf("%d %d", &x, &y); 
+				grille.grille[x][y] = 'o';
+				compteur += 1;
+				affichage(grille); 
+				grille.qui_le_tour = P1; 
+				
+			        if (compteur >= 9){
+			                printf("Match nul entre les deux joueurs\n");
+			                fini = 1;
+			        }				
+				
 			}
 		}
 	}
