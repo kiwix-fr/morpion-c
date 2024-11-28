@@ -19,8 +19,6 @@ int est_fini(struct morpion grille); // Fonction pour analyser si la partie est 
 /* Fonction Principale */
 int main()
 {
-
-
 	char tab_grille[N][N] = {
 	{'a', '-', '-'},
 	{'-', '-', '-'},
@@ -54,8 +52,7 @@ struct morpion tour_joueur(struct morpion grille){
 	if (compteur >= 9)
 	{
 		printf("Match Nul\n");
-	}
-	else{
+	} else{
 		while(fini == 0){
 			fini = est_fini(grille);
 			if (grille.qui_le_tour == P1){
