@@ -47,34 +47,47 @@ void affichage(struct morpion grille) {
 
 struct morpion tour_joueur(struct morpion grille){
 	int fini = 0;
+	int compteur = 1; 
 	int x; /* x ou le joueur va jouer */ 
 	int y; /* y ou le joueur va jouer */ 
 
-	while(fini == 0){
-		fini = est_fini(grille);
-		if (grille.qui_le_tour == P1){
-			if (fini == 0){
-				printf("Joueur 1 c'est à vous de jouer\nOu voulez vous jouer ? : ");		
-				scanf("%d %d", &x , &y); /* recuperer les valeurs */ 
-		       		grille.grille[x][y] = 'x'; /* ajoute x dans le tableau au bon endroit */ 
-				affichage(grille); 	
-				grille.qui_le_tour = P2;
-			}
-		}
+	if (compteur >= 9)
+		printf("Match Nul\n");
 
-		else if (grille.qui_le_tour == P2){
-			if (fini == 0){
-				printf("Joueur 2 c'est à vous de jouer\nOu voulez vous jouer ? : ");
-				scanf("%d %d", &x, &y); 
-				grille.grille[x][y] = 'o';
-				affichage(grille); 
-				grille.qui_le_tour = P1; 
+	else
+	{
+
+
+		while(fini == 0){
+			fini = est_fini(grille);
+			if (grille.qui_le_tour == P1){
+				if (fini == 0){
+					printf("Joueur 1 c'est à vous de jouer\nOu voulez vous jouer ? : ");		
+					scanf("%d %d", &x , &y); /* recuperer les valeurs */ 
+		       			grille.grille[x][y] = 'x'; /* ajoute x dans le tableau au bon endroit */ 
+					compteur ++;
+					affichage(grille); 	
+					grille.qui_le_tour = P2;
+				}
+			}
+
+			else if (grille.qui_le_tour == P2){
+				if (fini == 0){
+					printf("Joueur 2 c'est à vous de jouer\nOu voulez vous jouer ? : ");
+					scanf("%d %d", &x, &y); 
+					grille.grille[x][y] = 'o';
+					compteur ++;
+					affichage(grille); 
+					grille.qui_le_tour = P1; 
+				}
 			}
 		}
 	}
 }
 
 int est_fini(struct morpion grille){
+
+	int egalite = 2;
 
 	for (int i = 0; i<3; i++){
 		// Gère les lignes
@@ -100,13 +113,19 @@ int est_fini(struct morpion grille){
 
                 if (grille.grille[0][2] == 'o' && (grille.grille[1][1] == 'o' && grille.grille[2][0] == 'o'))
 				grille.gagnant = P1;
+
+	
+
 	}
+
+
 
 	// Arrête le jeu
 	if (grille.gagnant != 0){
 	        printf("Le joueur %d à gagné, bien joué !\n", grille.gagnant);
 		return 1;
-	} else {
+	}
+       	else {
 		return 0;
 	}
 }
