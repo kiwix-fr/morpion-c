@@ -52,12 +52,10 @@ struct morpion tour_joueur(struct morpion grille){
 	int y; /* y ou le joueur va jouer */ 
 
 	if (compteur >= 9)
-		printf("Match Nul\n");
-
-	else
 	{
-
-
+		printf("Match Nul\n");
+	}
+	else{
 		while(fini == 0){
 			fini = est_fini(grille);
 			if (grille.qui_le_tour == P1){
@@ -65,7 +63,7 @@ struct morpion tour_joueur(struct morpion grille){
 					printf("Joueur 1 c'est à vous de jouer\nOu voulez vous jouer ? : ");		
 					scanf("%d %d", &x , &y); /* recuperer les valeurs */ 
 		       			grille.grille[x][y] = 'x'; /* ajoute x dans le tableau au bon endroit */ 
-					compteur ++;
+					compteur += 1;
 					affichage(grille); 	
 					grille.qui_le_tour = P2;
 				}
@@ -76,7 +74,7 @@ struct morpion tour_joueur(struct morpion grille){
 					printf("Joueur 2 c'est à vous de jouer\nOu voulez vous jouer ? : ");
 					scanf("%d %d", &x, &y); 
 					grille.grille[x][y] = 'o';
-					compteur ++;
+					compteur += 1;
 					affichage(grille); 
 					grille.qui_le_tour = P1; 
 				}
@@ -86,9 +84,6 @@ struct morpion tour_joueur(struct morpion grille){
 }
 
 int est_fini(struct morpion grille){
-
-	int egalite = 2;
-
 	for (int i = 0; i<3; i++){
 		// Gère les lignes
 		if (grille.grille[i][0] == 'x' && (grille.grille[i][1] == 'x' && grille.grille[i][2] == 'x'))
@@ -113,13 +108,7 @@ int est_fini(struct morpion grille){
 
                 if (grille.grille[0][2] == 'o' && (grille.grille[1][1] == 'o' && grille.grille[2][0] == 'o'))
 				grille.gagnant = P1;
-
-	
-
 	}
-
-
-
 	// Arrête le jeu
 	if (grille.gagnant != 0){
 	        printf("Le joueur %d à gagné, bien joué !\n", grille.gagnant);
