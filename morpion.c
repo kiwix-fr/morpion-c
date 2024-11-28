@@ -20,9 +20,9 @@ int est_fini(struct morpion grille); // Fonction pour analyser si la partie est 
 int main()
 {
 	char tab_grille[N][N] = {
-	{'a', '-', '-'},
-	{'-', '-', '-'},
-	{'-', '-', '-'}
+	{' ', ' ', ' '},
+	{' ', ' ', ' '},
+	{' ', ' ', ' '}
 	};
 
 	struct morpion grille = {P1, 0, tab_grille[3][3], 0};
